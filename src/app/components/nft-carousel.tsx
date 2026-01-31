@@ -4,6 +4,7 @@ import { useRef } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import {useMarketplaceListings} from "../../hooks/useMarketplaceListings";
 
 const nftItems = [
   { id: 1, image: "/nft-1.jpg", number: "#101", price: "0.45", collection: "Chocotoycute" },
@@ -16,6 +17,9 @@ const nftItems = [
 
 export function NFTCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const {totalListings} = useMarketplaceListings();
+
+  console.log("totalListing: ", totalListings);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -30,7 +34,7 @@ export function NFTCarousel() {
   return (
     <section className="relative px-6 py-24">
       {/* Background accent */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-glow-purple/10 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-glow-purple/10 via-transparent to-transparent" />
 
       <div className="relative mx-auto max-w-7xl">
         {/* Section header */}
