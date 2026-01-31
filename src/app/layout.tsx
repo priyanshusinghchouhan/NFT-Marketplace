@@ -1,6 +1,7 @@
 import React from "react"
 import type { Metadata } from 'next'
 import { Space_Grotesk } from 'next/font/google'
+import {Providers} from "../app/providers";
 import './globals.css'
 
 const _spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -35,7 +36,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans antialiased`}>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

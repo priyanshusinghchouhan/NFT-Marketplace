@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const nftItems = [
   { id: 1, image: "/nft-1.jpg", number: "#101", price: "0.45", collection: "Chocotoycute" },
   { id: 2, image: "/nft-2.jpg", number: "#102", price: "0.68", collection: "Chocotoycute" },
-  { id: 3, image: "/nft-3.jpg", number: "#103", price: "0.52", collection: "Chocotoycute" },
+  { id: 3, image: "https://i.pinimg.com/736x/33/71/0b/33710b273ed1e486862440e0446dfc18.jpg", number: "#103", price: "0.52", collection: "Chocotoycute" },
   { id: 4, image: "/nft-4.jpg", number: "#104", price: "0.75", collection: "Chocotoycute" },
   { id: 5, image: "/nft-5.jpg", number: "#105", price: "0.89", collection: "Chocotoycute" },
   { id: 6, image: "/nft-6.jpg", number: "#106", price: "0.61", collection: "Chocotoycute" },

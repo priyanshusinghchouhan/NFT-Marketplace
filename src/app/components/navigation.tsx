@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
@@ -41,9 +41,7 @@ export function Navigation() {
 
           {/* Connect Wallet Button */}
           <div className="hidden md:block">
-            <Button className="rounded-full bg-neon px-6 font-semibold text-background shadow-[0_0_20px_rgba(200,255,100,0.3)] transition-all hover:bg-neon/90 hover:shadow-[0_0_30px_rgba(200,255,100,0.5)]">
-              Connect Wallet
-            </Button>
+            <ConnectButton />
           </div>
 
           {/* Mobile Menu Button */}
@@ -74,9 +72,7 @@ export function Navigation() {
                   {link.label}
                 </a>
               ))}
-              <Button className="mt-2 w-full rounded-full bg-neon font-semibold text-background">
-                Connect Wallet
-              </Button>
+              <ConnectButton />
             </div>
           </div>
         )}
