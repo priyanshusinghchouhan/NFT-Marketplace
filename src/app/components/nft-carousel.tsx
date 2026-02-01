@@ -6,16 +6,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useMarketplaceListings } from "../../hooks/useMarketplaceListings";
 import { useListing } from "../../hooks/useListings";
 import { MOCK_LISTINGS, USE_MOCK_DATA } from "../../mocks/mockListings";
-import {
-  FullMarketplaceListing,
-  MarketplaceListing,
-} from "../../types/listing";
+import {FullMarketplaceListing,MarketplaceListing} from "../../types/listing";
 import { NFTDetailModal } from "./NFTDetailModal";
 
-function CarouselCard({
-  listing,
-  onActionComplete,
-}: {
+function CarouselCard({listing, onActionComplete, }: {
   listing: FullMarketplaceListing;
   onActionComplete: () => void;
 }) {
@@ -84,7 +78,7 @@ function RealListingCard({
     collection: listing.collection,
     tokenId: listing.tokenId,
     price: listing.price,
-    image: listing.imageUrl || "/placeholder.png",
+    image: listing.imageUrl || "https://wallpapercave.com/wp/wp15409393.jpg",
     seller: listing.seller,
     nftContract: listing.nftContract,
   };
@@ -109,7 +103,11 @@ export function NFTCarousel() {
   } = useMarketplaceListings();
 
   const scrollRef = useRef<HTMLDivElement>(null);
-  const listingIds = Array.from({ length: Number(totalListings) }, (_, i) => i);
+  const listingIds = Array.from(
+    { length: Number(totalListings) },
+    (_, i) => i
+  );
+
 
   const scroll = (direction: "left" | "right") => {
     scrollRef.current?.scrollBy({
@@ -153,10 +151,6 @@ export function NFTCarousel() {
               Featured Collection
             </p>
             <h2 className="mt-2 text-3xl font-bold">Exclusive Bundle</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {USE_MOCK_DATA ? MOCK_LISTINGS.length : totalListings} total
-              listings
-            </p>
           </div>
 
           <div className="hidden gap-2 sm:flex">
