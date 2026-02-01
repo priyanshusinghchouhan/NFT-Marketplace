@@ -33,6 +33,7 @@ export function useListNFT(nftContract: `0x${string}` | null, tokenId: bigint | 
     writeContract: approve,
     data: approveHash,
     isPending: isApproving,
+    error: approveError,
   } = useWriteContract();
 
   const { isLoading: isApproveConfirming, isSuccess: approveSuccess } =
@@ -42,6 +43,7 @@ export function useListNFT(nftContract: `0x${string}` | null, tokenId: bigint | 
     writeContract: list,
     data: listHash,
     isPending: isListing,
+    error: listError
   } = useWriteContract();
 
   const {
@@ -79,9 +81,11 @@ export function useListNFT(nftContract: `0x${string}` | null, tokenId: bigint | 
     isApproving,
     isApproveConfirming,
     approveSuccess,
+    approveError,
 
     isListing,
     isListConfirming,
     listSuccess,
+    listError
   };
 }
