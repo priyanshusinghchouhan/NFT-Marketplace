@@ -2,6 +2,14 @@
 
 A modern NFT marketplace frontend built with **Next.js (App Router)**, **RainbowKit/Wagmi**, and **Viem**. Connect your wallet, browse on-chain listings, view NFT metadata, and perform marketplace actions like **list**, **buy**, **cancel**, and **update price**.
 
+A modern decentralized NFT marketplace built with **Next.js (App Router)**, **RainbowKit/Wagmi**, and **Viem**. Connect your wallet, browse on-chain listings, view NFT metadata, and perform marketplace actions like **list**, **buy**, **cancel**, and **update price**.
+
+## 🔗 Links
+
+- **Live Demo:** [NFT Marketplace](https://nft-marketplace-chi-red.vercel.app/)
+- **Smart Contract:** [0x14098c94258118087820b477bD2B9a38E3cE5371](https://sepolia.etherscan.io/address/0x14098c94258118087820b477bD2B9a38E3cE5371)
+- **Contract Repo:** [Smart-Contract](https://github.com/priyanshusinghchouhan/nft-marketplace-contract)
+
 ## Features
 
 - **Wallet connection** via RainbowKit (WalletConnect-powered)
@@ -34,6 +42,12 @@ A modern NFT marketplace frontend built with **Next.js (App Router)**, **Rainbow
 - **npm** (this repo includes `package-lock.json`)
 - A wallet (e.g. MetaMask / Rabby) connected through RainbowKit
 - Some **Sepolia ETH** for gas (for listing/buying/updating)
+
+## 📸 Screenshots
+
+<img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/dfd7d57a-8488-40a9-86d0-be1eb6809a16" />
+<img width="1434" height="776" alt="image" src="https://github.com/user-attachments/assets/5630a887-07ec-4c57-b40d-704276405c41" />
+<img width="1441" height="771" alt="image" src="https://github.com/user-attachments/assets/b729561f-bd32-410c-99c3-23249e42cd87" />
 
 ## Installation
 
@@ -150,3 +164,10 @@ public/               # Static assets (sample NFT images, icons)
 
 - This repo is the **frontend** only; it assumes a marketplace contract already exists and is deployed.
 - If you want environment-variable configuration (contract address / WalletConnect project id), you can refactor `src/constants/constants.ts` and `src/app/providers.tsx` to read from `.env.local`.
+
+=======
+
+## 📄 License
+
+MIT
+
