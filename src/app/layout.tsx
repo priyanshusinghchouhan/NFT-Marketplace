@@ -7,7 +7,7 @@ import './globals.css'
 const _spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'NFT Market - Create Your Dream Gallery',
+  title: 'NFT Market - Discover unique NFTs',
   description: 'Discover, collect, and trade unique NFTs from top creators around the world',
   icons: {
     icon: [
