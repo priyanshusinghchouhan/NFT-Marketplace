@@ -12,7 +12,7 @@ const floatingCards = [
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden px-6 pt-16 pb-10">
+    <section className="relative overflow-hidden px-6 pt-20 pb-10">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-glow-purple/30 via-background to-background" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,var(--tw-gradient-stops))] from-glow-blue/20 via-transparent to-transparent" />
 
