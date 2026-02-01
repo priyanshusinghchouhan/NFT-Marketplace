@@ -7,8 +7,9 @@ import { formatEther } from "viem";
 export function useListing(listingId: number) {
     const [metadata, setMetadata] = useState<any>(null);
     const [imageUrl, setImageUrl] = useState<string>("");
+    const [isLoadingMetadata, setIsLoadingMetadata] = useState(false);
 
-    const {data: listing} = useReadContract({
+    const {data: listing, isLoading: isLoadingListing} = useReadContract({
         address: MARKETPLACE_CONTRACT_ADDRESS,
         abi: NFTMarketplaceABI,
         functionName: "getListing",
@@ -30,6 +31,7 @@ export function useListing(listingId: number) {
         if(!tokenURI) return;
 
         const fetchMetadata = async() => {
+            setIsLoadingMetadata(true);
             try {
                 const url = (tokenURI as string).replace("ipfs://", "https://ipfs.io/ipfs/");
                 const response = await fetch(url);
@@ -42,6 +44,8 @@ export function useListing(listingId: number) {
                 }
             } catch(e) {
                 console.log("Error fetching metadata: ", e);
+            } finally {
+                setIsLoadingMetadata(false);
             }
         }
 
@@ -61,6 +65,7 @@ export function useListing(listingId: number) {
         metadata,
         imageUrl,
         name: metadata?.name || `NFT #${listing[2].toString()}`,
-        collection: metadata?.collection || "Unknown Collection"
+        collection: metadata?.collection || "Unknown Collection",
+        isLoading: isLoadingListing || isLoadingMetadata
     };
 }
