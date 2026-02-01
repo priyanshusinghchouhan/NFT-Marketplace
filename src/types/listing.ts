@@ -1,8 +1,20 @@
-type MarketplaceListing = {
-  id: number
-  image: string
-  tokenId: string
-  price: string
-  collection: string
-  name: string
+export interface MarketplaceListing {
+  id: number;
+  name: string;
+  collection: string;
+  tokenId: string;
+  price: string;
+  image: string;
 }
+
+export interface FullMarketplaceListing {
+  id: number;
+  name: string;
+  collection: string;
+  tokenId: string;
+  price: string;
+  image: string;
+  seller: string;
+  nftContract: string;
+}
+
