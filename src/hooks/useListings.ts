@@ -54,7 +54,7 @@ export function useListing(listingId: number) {
     fetchMetadata();
   }, [tokenURI]);
 
-  const isLoading = isLoadingListing || isLoadingMetadata;
+  const isLoading = isLoadingListing || isLoadingMetadata;  
 
   if (!listingData) {
     return {

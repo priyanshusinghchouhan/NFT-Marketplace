@@ -9,11 +9,22 @@ import { MOCK_LISTINGS, USE_MOCK_DATA } from "../../mocks/mockListings";
 import {FullMarketplaceListing,MarketplaceListing} from "../../types/listing";
 import { NFTDetailModal } from "./NFTDetailModal";
 
+const PLACEHOLDER_IMAGES = [
+  "https://i.pinimg.com/1200x/e3/75/b5/e375b5bc3d3e2df39d59b7fcad7793bd.jpg",
+  "https://i.pinimg.com/736x/e2/e7/13/e2e71377191de1ef3274cd1664730d27.jpg",
+  "https://i.pinimg.com/736x/fd/b2/f3/fdb2f3b594d52a04de454be42a6ac69d.jpg",
+  "https://i.pinimg.com/1200x/89/42/6b/89426b0cad23f00f762c6768b3292db0.jpg",
+  "https://i.pinimg.com/1200x/51/f0/c1/51f0c1318f77d45ccf4d7a026282adaf.jpg",
+  "https://i.pinimg.com/736x/72/a4/e1/72a4e1f16e86e8f7388d6b95d55bb715.jpg",
+  "https://i.pinimg.com/1200x/21/93/4b/21934b0b34b3b55ab21c683a3677faf1.jpg"
+];
+
 function CarouselCard({listing, onActionComplete, }: {
   listing: FullMarketplaceListing;
   onActionComplete: () => void;
 }) {
   const [showDetail, setShowDetail] = useState(false);
+  
 
   return (
     <>
@@ -64,6 +75,7 @@ function RealListingCard({
   onActionComplete: () => void;
 }) {
   const { listing, isLoading, refetch } = useListing(listingId);
+  const placeholderImage = PLACEHOLDER_IMAGES[listingId % PLACEHOLDER_IMAGES.length];
 
   if (isLoading)
     return (
@@ -78,7 +90,7 @@ function RealListingCard({
     collection: listing.collection,
     tokenId: listing.tokenId,
     price: listing.price,
-    image: listing.imageUrl || "NA",
+    image: listing.imageUrl || placeholderImage,
     seller: listing.seller,
     nftContract: listing.nftContract,
   };
