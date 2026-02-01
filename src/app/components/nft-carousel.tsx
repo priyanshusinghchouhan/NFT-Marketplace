@@ -78,7 +78,7 @@ function RealListingCard({
     collection: listing.collection,
     tokenId: listing.tokenId,
     price: listing.price,
-    image: listing.imageUrl || "https://wallpapercave.com/wp/wp15409393.jpg",
+    image: listing.imageUrl || "NA",
     seller: listing.seller,
     nftContract: listing.nftContract,
   };
