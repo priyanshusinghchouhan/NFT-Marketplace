@@ -9,7 +9,7 @@ export function useListing(listingId: number) {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [isLoadingMetadata, setIsLoadingMetadata] = useState(false);
 
-  const { data: listingData, isLoading: isLoadingListing } = useReadContract({
+  const { data: listingData, isLoading: isLoadingListing, refetch } = useReadContract({
     address: MARKETPLACE_CONTRACT_ADDRESS,
     abi: NFTMarketplaceABI,
     functionName: "getListing",
@@ -76,5 +76,6 @@ export function useListing(listingId: number) {
       collection: metadata?.collection || "Unknown Collection",
     },
     isLoading,
+    refetch
   };
 }
