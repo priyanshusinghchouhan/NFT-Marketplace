@@ -18,9 +18,7 @@ export function ListNFTModal({ isOpen, onClose }: Props) {
   const [step, setStep] = useState<"input" | "approving" | "listing">("input");
 
   const nftContract =
-    contract && contract.startsWith("0x")
-      ? (contract as `0x${string}`)
-      : null;
+    contract && contract.startsWith("0x") ? (contract as `0x${string}`) : null;
 
   const tokenIdBigInt = tokenId ? BigInt(tokenId) : null;
 
@@ -34,10 +32,12 @@ export function ListNFTModal({ isOpen, onClose }: Props) {
     isApproving,
     isApproveConfirming,
     approveSuccess,
+    approveError,
 
     isListing,
     isListConfirming,
     listSuccess,
+    listError,
   } = useListNFT(nftContract, tokenIdBigInt);
 
   useEffect(() => {
@@ -48,9 +48,21 @@ export function ListNFTModal({ isOpen, onClose }: Props) {
   }, [approveSuccess, step, price, listNFT]);
 
   useEffect(() => {
+    if (approveError && step === "approving") {
+      setStep("input");
+    }
+  }, [approveError, step]);
+
+  useEffect(() => {
+    if (listError && step === "listing") {
+      setStep("input");
+    }
+  }, [listError, step]);
+
+  useEffect(() => {
     if (listSuccess) {
-        refetch();
-        
+      refetch();
+
       setTimeout(() => {
         reset();
         onClose();
@@ -124,24 +136,28 @@ export function ListNFTModal({ isOpen, onClose }: Props) {
 
           {step !== "input" && (
             <div className="text-sm text-neon">
-              {step === "approving" &&
-                (isApproving
-                  ? "Confirm approval in wallet…"
-                  : isApproveConfirming
-                  ? "Approving marketplace…"
-                  : "Approval confirmed")}
-              {step === "listing" &&
-                (isListing
-                  ? "Confirm listing in wallet…"
-                  : isListConfirming
-                  ? "Listing NFT…"
-                  : "NFT listed successfully")}
+              {step === "approving" && (
+                <>
+                  {isApproving && "Confirm approval in wallet…"}
+                  {isApproveConfirming && "Approving marketplace…"}
+                  {approveError && "Approval cancelled"}
+                  {approveSuccess && "Approval confirmed"}
+                </>
+              )}
+              {step === "listing" && (
+                <>
+                  {isListing && "Confirm listing in wallet…"}
+                  {isListConfirming && "Listing NFT…"}
+                  {listError && "Listing cancelled"}
+                  {listSuccess && "NFT listed successfully"}
+                </>
+              )}
             </div>
           )}
 
           <Button
             onClick={handleSubmit}
-            disabled={step !== "input"}
+            disabled={step !== "input" || isApproving || isListing}
             className="w-full bg-neon text-background"
           >
             {needsApproval ? "Approve & List" : "List NFT"}
