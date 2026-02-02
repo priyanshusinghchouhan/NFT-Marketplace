@@ -94,7 +94,7 @@ export function HeroSection() {
                     />
                   </div>
                   <div className="mt-3 px-1">
-                    <p className="text-xs text-muted-foreground">Chocotoycute</p>
+                    <p className="text-xs text-muted-foreground">Pedri</p>
                     <div className="mt-1 flex items-center justify-between">
                       <p className="font-semibold text-foreground">#{100 + index}</p>
                       <p className="text-sm font-medium text-neon">{(0.5 + index * 0.2).toFixed(1)} ETH</p>
