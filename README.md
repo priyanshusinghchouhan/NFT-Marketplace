@@ -2,8 +2,6 @@
 
 A modern NFT marketplace frontend built with **Next.js (App Router)**, **RainbowKit/Wagmi**, and **Viem**. Connect your wallet, browse on-chain listings, view NFT metadata, and perform marketplace actions like **list**, **buy**, **cancel**, and **update price**.
 
-A modern decentralized NFT marketplace built with **Next.js (App Router)**, **RainbowKit/Wagmi**, and **Viem**. Connect your wallet, browse on-chain listings, view NFT metadata, and perform marketplace actions like **list**, **buy**, **cancel**, and **update price**.
-
 **Current images shown are placeholder images - working on minting demo NFTs with real metadata.**
 
 ## 🔗 Links
