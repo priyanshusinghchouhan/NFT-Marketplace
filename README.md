@@ -50,6 +50,8 @@ A modern decentralized NFT marketplace built with **Next.js (App Router)**, **Ra
 <img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/dfd7d57a-8488-40a9-86d0-be1eb6809a16" />
 <img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/b471d9fa-6b5a-4ef0-aa98-668d469a4363" />
 <img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/38fd4192-9ab8-42a7-9fa0-a9ddfa6e9fba" />
+<img width="1470" height="786" alt="image" src="https://github.com/user-attachments/assets/2ecfb6f3-64bc-4ee3-9039-09f32fb24130" />
+
 
 
 ## Installation
