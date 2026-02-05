@@ -164,8 +164,7 @@ public/               # Static assets (sample NFT images, icons)
   - Ensure approval is granted (the app can prompt for `approve`, but your NFT contract must support standard ERC-721).
 
 ## Notes
-
-- This repo is the **frontend** only; it assumes a marketplace contract already exists and is deployed.
+- Current images shown are placeholder images - working on minting demo NFTs with real metadata.
 - If you want environment-variable configuration (contract address / WalletConnect project id), you can refactor `src/constants/constants.ts` and `src/app/providers.tsx` to read from `.env.local`.
 
 =======
