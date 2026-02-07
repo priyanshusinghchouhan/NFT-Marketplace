@@ -2,8 +2,6 @@
 
 A modern NFT marketplace frontend built with **Next.js (App Router)**, **RainbowKit/Wagmi**, and **Viem**. Connect your wallet, browse on-chain listings, view NFT metadata, and perform marketplace actions like **list**, **buy**, **cancel**, and **update price**.
 
-A modern decentralized NFT marketplace built with **Next.js (App Router)**, **RainbowKit/Wagmi**, and **Viem**. Connect your wallet, browse on-chain listings, view NFT metadata, and perform marketplace actions like **list**, **buy**, **cancel**, and **update price**.
-
 **Current images shown are placeholder images - working on minting demo NFTs with real metadata.**
 
 ## 🔗 Links
@@ -50,6 +48,8 @@ A modern decentralized NFT marketplace built with **Next.js (App Router)**, **Ra
 <img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/dfd7d57a-8488-40a9-86d0-be1eb6809a16" />
 <img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/b471d9fa-6b5a-4ef0-aa98-668d469a4363" />
 <img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/38fd4192-9ab8-42a7-9fa0-a9ddfa6e9fba" />
+<img width="1470" height="786" alt="image" src="https://github.com/user-attachments/assets/2ecfb6f3-64bc-4ee3-9039-09f32fb24130" />
+
 
 
 ## Installation
@@ -164,8 +164,7 @@ public/               # Static assets (sample NFT images, icons)
   - Ensure approval is granted (the app can prompt for `approve`, but your NFT contract must support standard ERC-721).
 
 ## Notes
-
-- This repo is the **frontend** only; it assumes a marketplace contract already exists and is deployed.
+- Current images shown are placeholder images - working on minting demo NFTs with real metadata.
 - If you want environment-variable configuration (contract address / WalletConnect project id), you can refactor `src/constants/constants.ts` and `src/app/providers.tsx` to read from `.env.local`.
 
 =======
