@@ -3,11 +3,10 @@
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useMarketplaceListings } from "../../hooks/useMarketplaceListings";
-import { useListing } from "../../hooks/useListings";
-import { MOCK_LISTINGS, USE_MOCK_DATA } from "../../mocks/mockListings";
-import {FullMarketplaceListing,MarketplaceListing} from "../../types/listing";
+import { useListings } from "../../hooks/useListings";
+import {FullMarketplaceListing} from "../../types/listing";
 import { NFTDetailModal } from "./NFTDetailModal";
+import { formatEther } from "viem";
 
 const PLACEHOLDER_IMAGES = [
   "https://i.pinimg.com/1200x/e3/75/b5/e375b5bc3d3e2df39d59b7fcad7793bd.jpg",
@@ -16,7 +15,10 @@ const PLACEHOLDER_IMAGES = [
   "https://i.pinimg.com/1200x/89/42/6b/89426b0cad23f00f762c6768b3292db0.jpg",
   "https://i.pinimg.com/1200x/51/f0/c1/51f0c1318f77d45ccf4d7a026282adaf.jpg",
   "https://i.pinimg.com/736x/72/a4/e1/72a4e1f16e86e8f7388d6b95d55bb715.jpg",
-  "https://i.pinimg.com/1200x/21/93/4b/21934b0b34b3b55ab21c683a3677faf1.jpg"
+  "https://i.pinimg.com/1200x/21/93/4b/21934b0b34b3b55ab21c683a3677faf1.jpg",
+  "https://i.pinimg.com/736x/97/f3/a0/97f3a02aacd095dab5ff6e61ea7c0962.jpg",
+  "https://i.pinimg.com/736x/1c/d2/94/1cd294a16e0a84019f4d177aea4016b2.jpg",
+  "https://i.pinimg.com/736x/9b/c0/4d/9bc04d5e3e74058aa0b5ad629a12db0c.jpg",
 ];
 
 function CarouselCard({listing, onActionComplete, }: {
@@ -67,59 +69,10 @@ function CarouselCard({listing, onActionComplete, }: {
   );
 }
 
-function RealListingCard({
-  listingId,
-  onActionComplete,
-}: {
-  listingId: number;
-  onActionComplete: () => void;
-}) {
-  const { listing, isLoading, refetch } = useListing(listingId);
-  const placeholderImage = PLACEHOLDER_IMAGES[listingId % PLACEHOLDER_IMAGES.length];
-
-  if (isLoading)
-    return (
-      <div className="px-6 py-24 text-center">Loading Your NFT's...... </div>
-    );
-
-  if (!listing || !listing.active) return null;
-
-  const mappedListing: FullMarketplaceListing = {
-    id: listingId,
-    name: listing.name,
-    collection: listing.collection,
-    tokenId: listing.tokenId,
-    price: listing.price,
-    image: listing.imageUrl || placeholderImage,
-    seller: listing.seller,
-    nftContract: listing.nftContract,
-  };
-
-  return (
-    <CarouselCard
-      key={`${listingId}-${listing.price}-${listing.active}`}
-      listing={mappedListing}
-      onActionComplete={() => {
-        refetch();
-        onActionComplete();
-      }}
-    />
-  );
-}
 
 export function NFTCarousel() {
-  const {
-    totalListings,
-    isLoading,
-    refetch: refetchListings,
-  } = useMarketplaceListings();
-
+  const { listings, isLoading, refetch } = useListings();
   const scrollRef = useRef<HTMLDivElement>(null);
-  const listingIds = Array.from(
-    { length: Number(totalListings) },
-    (_, i) => i
-  );
-
 
   const scroll = (direction: "left" | "right") => {
     scrollRef.current?.scrollBy({
@@ -128,23 +81,13 @@ export function NFTCarousel() {
     });
   };
 
-  function adaptMockToFullListing(
-    mock: MarketplaceListing,
-  ): FullMarketplaceListing {
-    return {
-      ...mock,
-      seller: "0x0000000000000000000000000000000000000000",
-      nftContract: "0x0000000000000000000000000000000000000000",
-    };
-  }
-
   if (isLoading) {
     return (
       <div className="px-6 py-24 text-center">Loading Marketplace...... </div>
     );
   }
 
-  if (totalListings == 0) {
+  if ( !listings || listings.length === 0) {
     return (
       <div className="px-6 py-24 text-center">
         <p className="text-muted-foreground">
@@ -176,21 +119,26 @@ export function NFTCarousel() {
         </div>
 
         <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-4">
-          {USE_MOCK_DATA
-            ? MOCK_LISTINGS.map((listing) => (
-                <CarouselCard
-                  key={listing.id}
-                  listing={adaptMockToFullListing(listing)}
-                  onActionComplete={refetchListings}
-                />
-              ))
-            : listingIds.map((id) => (
-                <RealListingCard
-                  key={id}
-                  listingId={id}
-                  onActionComplete={refetchListings}
-                />
-              ))}
+          {listings.map((listing: any, index: number) => {
+            const mappedListing: FullMarketplaceListing = {
+              id: Number(listing.listingId),
+              name: `NFT #${listing.tokenId}`,
+              collection: `Marketplace Collection`,
+              tokenId: listing.tokenId,
+              price: formatEther(BigInt(listing.price)),
+              image: PLACEHOLDER_IMAGES[index % PLACEHOLDER_IMAGES.length],
+              seller: listing.seller,
+              nftContract: listing.nftContract,
+            };
+
+            return ( 
+              <CarouselCard 
+                key={listing.listingId}
+                  listing={mappedListing}
+                  onActionComplete={refetch}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
