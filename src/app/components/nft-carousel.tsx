@@ -21,9 +21,8 @@ const PLACEHOLDER_IMAGES = [
   "https://i.pinimg.com/736x/9b/c0/4d/9bc04d5e3e74058aa0b5ad629a12db0c.jpg",
 ];
 
-function CarouselCard({listing, onActionComplete, }: {
+function CarouselCard({listing, }: {
   listing: FullMarketplaceListing;
-  onActionComplete: () => void;
 }) {
   const [showDetail, setShowDetail] = useState(false);
   
@@ -63,7 +62,6 @@ function CarouselCard({listing, onActionComplete, }: {
         listing={listing}
         isOpen={showDetail}
         onClose={() => setShowDetail(false)}
-        onActionComplete={onActionComplete}
       />
     </>
   );
@@ -72,6 +70,7 @@ function CarouselCard({listing, onActionComplete, }: {
 
 export function NFTCarousel() {
   const { listings, isLoading, refetch } = useListings();
+  
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -126,7 +125,7 @@ export function NFTCarousel() {
               collection: `Marketplace Collection`,
               tokenId: listing.tokenId,
               price: formatEther(BigInt(listing.price)),
-              image: PLACEHOLDER_IMAGES[index % PLACEHOLDER_IMAGES.length],
+              image: PLACEHOLDER_IMAGES[Number(listing.listingId) % PLACEHOLDER_IMAGES.length],
               seller: listing.seller,
               nftContract: listing.nftContract,
             };
@@ -135,7 +134,6 @@ export function NFTCarousel() {
               <CarouselCard 
                 key={listing.listingId}
                   listing={mappedListing}
-                  onActionComplete={refetch}
               />
             );
           })}
