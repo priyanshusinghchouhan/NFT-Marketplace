@@ -23,14 +23,12 @@ interface NFTDetailModalProps {
   };
   isOpen: boolean;
   onClose: () => void;
-  onActionComplete: () => void;
 }
 
 export function NFTDetailModal({
   listing,
   isOpen,
   onClose,
-  onActionComplete,
 }: NFTDetailModalProps) {
   const { address } = useAccount();
 
@@ -46,22 +44,14 @@ export function NFTDetailModal({
   
   useEffect(() => {
     if (buy.isSuccess || cancel.isSuccess || update.isSuccess) {
-      onActionComplete();
       onClose();
     }
   }, [
     buy.isSuccess,
     cancel.isSuccess,
     update.isSuccess,
-    onActionComplete,
     onClose,
   ]);
-
-  const resetState = () => {
-    setNewPrice("");
-    setShowPriceUpdate(false);
-    setActiveAction(null);
-  };
 
   if (!isOpen) return null;
 
