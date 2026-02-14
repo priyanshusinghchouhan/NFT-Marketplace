@@ -27,9 +27,7 @@ export function useBuyNft() {
             value: parseEther(price),
         });
     };
-
-    console.log("before useBuy useEffect");
-
+    
     useEffect(() => {
         if(isSuccess && lastListingId !== null) {
             setTimeout(() => {

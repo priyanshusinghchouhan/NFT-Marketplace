@@ -28,9 +28,6 @@ export function useCancelListing() {
       args: [BigInt(listingId)],
     });
   };
-
-  console.log("before useCancel useEffect");
-
   useEffect(() => {
     if(isSuccess && lastCancelledId !== null) {
       console.log("inside useEffect of cancelled listing");
