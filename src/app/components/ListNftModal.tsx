@@ -22,8 +22,6 @@ export function ListNFTModal({ isOpen, onClose }: Props) {
 
   const tokenIdBigInt = tokenId ? BigInt(tokenId) : null;
 
-  const { refetch } = useMarketplaceListings();
-
   const {
     needsApproval,
     approveNFT,
@@ -61,12 +59,10 @@ export function ListNFTModal({ isOpen, onClose }: Props) {
 
   useEffect(() => {
     if (listSuccess) {
-      refetch();
-
       setTimeout(() => {
         reset();
         onClose();
-      }, 1500);
+      }, 1200);
     }
   }, [listSuccess, onClose]);
 
