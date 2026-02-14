@@ -2,10 +2,14 @@ import {useWriteContract,  useWaitForTransactionReceipt,useReadContract,useAccou
 import { MARKETPLACE_CONTRACT_ADDRESS } from "../constants/constants";
 import { NFTMarketplaceABI, ERC721_ABI } from "../abi/NFTMarketplace";
 import { parseEther } from "viem";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 
 export function useListNFT(nftContract: `0x${string}` | null, tokenId: bigint | null) {
   const { address: owner } = useAccount();
+
+  const queryClient = useQueryClient();
   
   const { data: approvedAddress } = useReadContract({
     address: nftContract ?? undefined,
@@ -72,6 +76,17 @@ export function useListNFT(nftContract: `0x${string}` | null, tokenId: bigint | 
       args: [nftContract, tokenId, parseEther(priceEth)],
     });
   };
+
+  useEffect(() => {
+      if(listSuccess){
+        console.log("inside useListNft.......");
+        setTimeout(() => {
+          queryClient.invalidateQueries({
+            queryKey: ["listings"]
+          })
+        }, 1200);
+      }
+  },[listSuccess, queryClient])
 
   return {
     needsApproval,
