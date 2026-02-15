@@ -1,14 +1,32 @@
 # NFT Marketplace Frontend
 
-A modern NFT marketplace frontend built with **Next.js (App Router)**, **RainbowKit/Wagmi**, and **Viem**. Connect your wallet, browse on-chain listings, view NFT metadata, and perform marketplace actions like **list**, **buy**, **cancel**, and **update price**.
+A modern NFT marketplace frontend built with **Next.js (App Router)**, **RainbowKit/Wagmi**, and **Viem**. Connect your wallet, browse on-chain listings, view NFT metadata, and perform marketplace actions: **list**, **buy**, **cancel**, and **update price**.
 
-**Current images shown are placeholder images - working on minting demo NFTs with real metadata.**
+---
 
-## 🔗 Links
+## What does this app do?
+
+This is the **web app** for the NFT marketplace. You connect your wallet (e.g. MetaMask), switch to **Sepolia** (testnet), and then you can:
+
+- **Browse** – See all active listings from the marketplace contract.
+- **List** – List your own NFT for sale (with approval flow if needed).
+- **Buy** – Purchase a listed NFT by paying the listed price in ETH.
+- **Cancel** – Remove your listing.
+- **Update price** – Change the price of your listing.
+
+The app reads listing data and NFT metadata (including `ipfs://` URIs) and talks to your wallet to sign transactions. It can also run in **mock mode** so you can try the UI without a deployed contract.
+
+**Note:** Current images shown are placeholders; minting demo NFTs with real metadata is in progress.
+
+---
+
+## Links
 
 - **Live Demo:** [NFT Marketplace](https://nft-marketplace-chi-red.vercel.app/)
 - **Smart Contract:** [0x14098c94258118087820b477bD2B9a38E3cE5371](https://sepolia.etherscan.io/address/0x14098c94258118087820b477bD2B9a38E3cE5371)
 - **Contract Repo:** [Smart-Contract](https://github.com/priyanshusinghchouhan/nft-marketplace-contract)
+
+---
 
 ## Features
 
@@ -28,6 +46,8 @@ A modern NFT marketplace frontend built with **Next.js (App Router)**, **Rainbow
   - shadcn/ui-style components (e.g. `Button`)
   - Neon/dark web3 theme
 
+---
+
 ## Tech stack
 
 - **Next.js** 16 (App Router) + **React** 19 + **TypeScript**
@@ -36,104 +56,89 @@ A modern NFT marketplace frontend built with **Next.js (App Router)**, **Rainbow
 - **@tanstack/react-query** for caching and refetching
 - **Tailwind CSS** + **shadcn/ui** patterns + **Lucide** icons
 
+---
+
 ## Prerequisites
 
-- **Node.js 20+** recommended
+- **Node.js** 20+ recommended
 - **npm** (this repo includes `package-lock.json`)
-- A wallet (e.g. MetaMask / Rabby) connected through RainbowKit
+- A wallet (e.g. MetaMask / Rabby) that works with RainbowKit
 - Some **Sepolia ETH** for gas (for listing/buying/updating)
 
-## 📸 Screenshots
+---
+
+## Quick start in 3 steps
+
+**1. Install dependencies**
+
+```bash
+npm install
+```
+
+**2. Run the dev server**
+
+```bash
+npm run dev
+```
+
+**3. Open in browser**
+
+Open [http://localhost:3000](http://localhost:3000). Connect your wallet and switch to **Sepolia** to use the marketplace.
+
+---
+
+## Screenshots
 
 <img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/dfd7d57a-8488-40a9-86d0-be1eb6809a16" />
 <img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/b471d9fa-6b5a-4ef0-aa98-668d469a4363" />
 <img width="1442" height="798" alt="image" src="https://github.com/user-attachments/assets/38fd4192-9ab8-42a7-9fa0-a9ddfa6e9fba" />
 <img width="1470" height="786" alt="image" src="https://github.com/user-attachments/assets/2ecfb6f3-64bc-4ee3-9039-09f32fb24130" />
 
+---
 
+## Scripts
 
-## Installation
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server (Next.js) at http://localhost:3000 |
+| `npm run build` | Production build |
+| `npm run start` | Run production server (after `npm run build`) |
+| `npm run lint` | Run ESLint |
 
-```bash
-npm install
-```
-
-## Run locally
-
-```bash
-npm run dev
-```
-
-Open `http://localhost:3000`.
-
-## Production build
-
-```bash
-npm run build
-npm run start
-```
-
-## Lint
-
-```bash
-npm run lint
-```
+---
 
 ## Configuration
 
-### Network + contract address
+All of these are optional to get started; change them when you use a different network, contract, or WalletConnect project.
 
-This frontend is currently configured for **Sepolia** and a single marketplace contract address:
+| What to configure | Where | Description |
+|-------------------|-------|-------------|
+| **Network** | `src/constants/constants.ts` | `SUPPORTED_CHAIN` (e.g. `sepolia`) |
+| **Marketplace contract** | `src/constants/constants.ts` | `MARKETPLACE_CONTRACT_ADDRESS` – update if you deploy a new contract |
+| **WalletConnect project ID** | `src/app/providers.tsx` | `getDefaultConfig({ projectId: "..." })` – use your own for production |
+| **Remote images (Next.js)** | `next.config.ts` | Domains for `next/image` (e.g. `wallpapercave.com`, `i.pinimg.com`). Add more if you load images from other domains. |
 
-- `src/constants/constants.ts`
-  - `SUPPORTED_CHAIN` (currently `sepolia`)
-  - `MARKETPLACE_CONTRACT_ADDRESS`
-
-If you redeploy your marketplace contract, update `MARKETPLACE_CONTRACT_ADDRESS`.
-
-### WalletConnect / RainbowKit Project ID
-
-RainbowKit uses a WalletConnect project id in:
-
-- `src/app/providers.tsx` → `getDefaultConfig({ projectId: "..." })`
-
-If you have your own WalletConnect project, replace the `projectId`.
-
-### Remote images (Next.js)
-
-`next.config.ts` allows images from:
-
-- `wallpapercave.com`
-- `i.pinimg.com`
-
-If you display images from other domains using `next/image`, add them to `remotePatterns`.
+---
 
 ## Using mock listings (no blockchain required)
 
-For demo/testing UI without a deployed marketplace, you can toggle mock listings:
+To try the UI without a deployed marketplace or wallet:
 
-- `src/mocks/mockListings.ts` → set `USE_MOCK_DATA = true`
+- Open `src/mocks/mockListings.ts` and set **`USE_MOCK_DATA = true`**.
+- The carousel will use `MOCK_LISTINGS` instead of on-chain listing IDs.
 
-When mock mode is enabled, the carousel uses `MOCK_LISTINGS` instead of on-chain listing IDs.
+---
 
 ## How the dApp works (high level)
 
-- **Browse listings**
-  - `useMarketplaceListings()` reads `getTotalListings()` from the marketplace contract.
-  - The UI builds listing IDs `0..(totalListings-1)` and loads each listing via `useListing(id)`.
-- **Load NFT metadata**
-  - `useListing()` reads marketplace `getListing(listingId)`
-  - Then reads ERC-721 `tokenURI(tokenId)` from the NFT contract
-  - If the URI is `ipfs://...`, it fetches via `https://ipfs.io/ipfs/...`
-- **List an NFT**
-  - `ListNFTModal` collects: NFT contract address, tokenId, price (ETH)
-  - `useListNFT()` checks approval:
-    - ERC-721 `getApproved(tokenId)` and `isApprovedForAll(owner, marketplace)`
-    - If needed, prompts wallet to `approve(marketplace, tokenId)` before calling `listNft(...)`
-- **Buy / Cancel / Update**
-  - `useBuyNft()` calls `buyNft(listingId)` and sends `value: parseEther(price)`
-  - `useCancelListing()` calls `cancelListing(listingId)`
-  - `useUpdateListingPrice()` calls `updateListingPrice(listingId, parseEther(newPrice))`
+The app reads from the marketplace contract and your wallet, and sends transactions when you list, buy, cancel, or update price.
+
+- **Browse listings** – `useMarketplaceListings()` reads `getTotalListings()` from the contract; the UI loads each listing via `useListing(id)`.
+- **Load NFT metadata** – `useListing()` gets `getListing(listingId)` from the marketplace, then reads `tokenURI(tokenId)` from the NFT contract. For `ipfs://` URIs it fetches via `https://ipfs.io/ipfs/...`.
+- **List an NFT** – `ListNFTModal` collects NFT contract, tokenId, and price. `useListNFT()` checks approval (`getApproved` / `isApprovedForAll`) and can prompt for `approve` before calling `listNft(...)`.
+- **Buy / Cancel / Update** – `useBuyNft()` calls `buyNft(listingId)` with `value: parseEther(price)`; `useCancelListing()` and `useUpdateListingPrice()` call the matching contract functions.
+
+---
 
 ## Project structure
 
@@ -150,26 +155,31 @@ src/
 public/               # Static assets (sample NFT images, icons)
 ```
 
+---
+
 ## Troubleshooting
 
-- **Connect button shows wrong network**
-  - Make sure your wallet is on **Sepolia** (the app is configured for Sepolia only).
-- **No listings shown**
-  - Confirm the marketplace contract has listings (`getTotalListings() > 0`), or enable mock mode.
-- **Images/metadata not loading**
-  - The app fetches metadata from `tokenURI`. For `ipfs://...` it uses the `ipfs.io` gateway.
-  - If your metadata/image uses a different gateway or an unsupported format, update the logic in `src/hooks/useListings.ts`.
-- **Listing fails**
-  - Ensure you own the NFT and the tokenId exists.
-  - Ensure approval is granted (the app can prompt for `approve`, but your NFT contract must support standard ERC-721).
+- **Connect button shows wrong network**  
+  Make sure your wallet is on **Sepolia**; the app is configured for Sepolia only.
+
+- **No listings shown**  
+  Confirm the marketplace contract has listings (`getTotalListings() > 0`), or enable mock mode in `src/mocks/mockListings.ts`.
+
+- **Images/metadata not loading**  
+  The app fetches metadata from `tokenURI`. For `ipfs://` it uses the `ipfs.io` gateway. If you use another gateway or format, update the logic in `src/hooks/useListings.ts`.
+
+- **Listing fails**  
+  Ensure you own the NFT and the tokenId exists. Ensure approval is granted; the app can prompt for `approve`, but your NFT contract must support standard ERC-721.
+
+---
 
 ## Notes
-- Current images shown are placeholder images - working on minting demo NFTs with real metadata.
-- If you want environment-variable configuration (contract address / WalletConnect project id), you can refactor `src/constants/constants.ts` and `src/app/providers.tsx` to read from `.env.local`.
 
-=======
+- Current images shown are placeholders; working on minting demo NFTs with real metadata.
+- For environment-based config (contract address, WalletConnect project id), you can refactor `src/constants/constants.ts` and `src/app/providers.tsx` to read from `.env.local`.
 
-## 📄 License
+---
+
+## License
 
 MIT
-
