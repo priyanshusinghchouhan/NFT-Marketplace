@@ -32,9 +32,9 @@ flowchart LR
 
   subgraph API
     Express[Express]
-    M[/marketplace]
-    U[/users]
-    A[/activity]
+    M["/marketplace"]
+    U["/users"]
+    A["/activity"]
     Express --> M
     Express --> U
     Express --> A
