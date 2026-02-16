@@ -36,7 +36,10 @@ export function useUpdateListingPrice() {
         setTimeout(() => {
           queryClient.invalidateQueries({
             queryKey:["listings"]
-          })
+          });
+          queryClient.invalidateQueries({
+            queryKey: ["user-nfts"]
+          });
         }, 1200);
       }
     }, [isSuccess, lastUpdatedId, queryClient])
