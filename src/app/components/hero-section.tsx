@@ -1,16 +1,45 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
-import Image from "next/image"
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const floatingCards = [
-  { id: 1, image: "https://wallpapercave.com/wp/wp15409393.jpg", rotation: -12, x: 0, y: 0, z: 3 },
-  { id: 2, image: "https://i.pinimg.com/736x/33/71/0b/33710b273ed1e486862440e0446dfc18.jpg", rotation: 8, x: 80, y: 60, z: 2 },
-  { id: 3, image: "https://wallpapercave.com/wp/wp15409393.jpg", rotation: -5, x: 40, y: 140, z: 1 },
-]
+  {
+    id: 1,
+    image: "https://i.pinimg.com/736x/e6/bf/8e/e6bf8e9bc5ce23560b2c6d0568b36a6e.jpg",
+    rotation: -12,
+    x: 0,
+    y: 0,
+    z: 3,
+  },
+  {
+    id: 2,
+    image:
+      "https://i.pinimg.com/736x/33/71/0b/33710b273ed1e486862440e0446dfc18.jpg",
+    rotation: 8,
+    x: 80,
+    y: 60,
+    z: 2,
+  },
+  {
+    id: 3,
+    image: "https://wallpapercave.com/wp/wp15409393.jpg",
+    rotation: -5,
+    x: 40,
+    y: 140,
+    z: 1,
+  },
+];
 
 export function HeroSection() {
+  const handleExploreClick = () => {
+    const el = document.getElementById("marketplace");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden px-6 pt-20 pb-10">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-glow-purple/30 via-background to-background" />
@@ -27,7 +56,7 @@ export function HeroSection() {
               <span className="bg-linear-to-r from-neon to-[#9eff00] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(200,255,100,0.5)]">
                 NFTs
               </span>{" "}
-               Directly On-Chain.
+              Directly On-Chain.
             </h1>
 
             <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
@@ -39,17 +68,24 @@ export function HeroSection() {
               <Button
                 size="lg"
                 className="group rounded-full bg-neon px-8 text-lg font-semibold text-background shadow-[0_0_30px_rgba(200,255,100,0.4)] transition-all hover:bg-neon/90 hover:shadow-[0_0_40px_rgba(200,255,100,0.6)]"
+                onClick={handleExploreClick}
               >
                 Explore
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full border-border/50 px-8 text-lg font-semibold text-foreground backdrop-blur-sm transition-all hover:border-neon/50 hover:bg-neon/10 bg-transparent"
+              <a
+                href="https://cast-nft-frontend.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Learn More
-              </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full border-border/50 px-8 text-lg font-semibold text-foreground backdrop-blur-sm transition-all hover:border-neon/50 hover:bg-neon/10 bg-transparent"
+                >
+                  Mint an NFT
+                </Button>
+              </a>
             </div>
 
             {/* Stats */}
@@ -59,7 +95,9 @@ export function HeroSection() {
                 <p className="text-sm text-muted-foreground">Marketplace</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-foreground">Wallet-based</p>
+                <p className="text-3xl font-bold text-foreground">
+                  Wallet-based
+                </p>
                 <p className="text-sm text-muted-foreground">Trading</p>
               </div>
               <div>
@@ -69,9 +107,18 @@ export function HeroSection() {
             </div>
           </div>
           <div className="relative hidden lg:block min-h-105">
-            <div className="absolute left-4 top-20 h-12 w-12 animate-bounce rounded-full bg-linear-to-br from-neon/80 to-neon/40 shadow-[0_0_20px_rgba(200,255,100,0.5)]" style={{ animationDuration: "3s" }} />
-            <div className="absolute bottom-32 right-8 h-8 w-8 animate-bounce rounded-full bg-linear-to-br from-glow-purple/80 to-glow-blue/60 shadow-[0_0_15px_rgba(139,92,246,0.5)]" style={{ animationDuration: "2.5s", animationDelay: "0.5s" }} />
-            <div className="absolute right-32 top-8 h-6 w-6 animate-bounce rounded-full bg-linear-to-br from-glow-blue/80 to-glow-purple/60 shadow-[0_0_12px_rgba(99,102,241,0.5)]" style={{ animationDuration: "2s", animationDelay: "1s" }} />
+            <div
+              className="absolute left-4 top-20 h-12 w-12 animate-bounce rounded-full bg-linear-to-br from-neon/80 to-neon/40 shadow-[0_0_20px_rgba(200,255,100,0.5)]"
+              style={{ animationDuration: "3s" }}
+            />
+            <div
+              className="absolute bottom-32 right-8 h-8 w-8 animate-bounce rounded-full bg-linear-to-br from-glow-purple/80 to-glow-blue/60 shadow-[0_0_15px_rgba(139,92,246,0.5)]"
+              style={{ animationDuration: "2.5s", animationDelay: "0.5s" }}
+            />
+            <div
+              className="absolute right-32 top-8 h-6 w-6 animate-bounce rounded-full bg-linear-to-br from-glow-blue/80 to-glow-purple/60 shadow-[0_0_12px_rgba(99,102,241,0.5)]"
+              style={{ animationDuration: "2s", animationDelay: "1s" }}
+            />
 
             {floatingCards.map((card, index) => (
               <div
@@ -94,10 +141,14 @@ export function HeroSection() {
                     />
                   </div>
                   <div className="mt-3 px-1">
-                    <p className="text-xs text-muted-foreground">Pedri</p>
+                    <p className="text-xs text-muted-foreground"></p>
                     <div className="mt-1 flex items-center justify-between">
-                      <p className="font-semibold text-foreground">#{100 + index}</p>
-                      <p className="text-sm font-medium text-neon">{(0.5 + index * 0.2).toFixed(1)} ETH</p>
+                      <p className="font-semibold text-foreground">
+                        #{100 + index}
+                      </p>
+                      <p className="text-sm font-medium text-black">
+                        {(0.5 + index * 0.2).toFixed(1)} ETH
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -107,5 +158,5 @@ export function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
