@@ -79,11 +79,9 @@ export function useListNFT(nftContract: `0x${string}` | null, tokenId: bigint | 
 
   useEffect(() => {
       if(listSuccess){
-        console.log("inside useListNft.......");
         setTimeout(() => {
-          queryClient.invalidateQueries({
-            queryKey: ["listings"]
-          })
+          queryClient.invalidateQueries({ queryKey: ["listings"] });
+          queryClient.invalidateQueries({ queryKey: ["user-nfts"] });
         }, 1200);
       }
   },[listSuccess, queryClient])
