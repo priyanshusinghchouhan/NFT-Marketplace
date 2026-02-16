@@ -1,9 +1,3 @@
-/**
- * Resolves tokenURI to an image URL.
- * - If tokenURI is a direct image URL (http/https/ipfs image), return it (with ipfs gateway).
- * - If tokenURI returns JSON metadata with "image" or "image_url", fetch and return that URL.
- * - Otherwise returns null (caller can use placeholder).
- */
 export async function resolveTokenURIToImage(tokenURI: string | null | undefined): Promise<string | null> {
   if (!tokenURI || typeof tokenURI !== "string") return null;
 
