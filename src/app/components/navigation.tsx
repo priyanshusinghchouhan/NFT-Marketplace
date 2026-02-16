@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ListNFTModal } from "../../app/components/ListNftModal";
 import { Button } from "@/components/ui/button";
 import { useAccount } from "wagmi";
 
 const navLinks = [
-  { label: "Learn", href: "#" },
-  { label: "Collections", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "My Collections", href: "/my-nfts" },
   { label: "Creators", href: "#" },
   { label: "More", href: "#" },
 ];
@@ -37,13 +38,13 @@ export function Navigation() {
 
             <div className="hidden items-center gap-8 md:flex">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
                   href={link.href}
                   className="text-sm font-medium text-muted-foreground hover:text-foreground"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
 
