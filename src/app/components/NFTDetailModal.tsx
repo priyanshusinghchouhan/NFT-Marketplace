@@ -72,11 +72,15 @@ export function NFTDetailModal({
         </button>
 
         <div className="grid gap-8 md:grid-cols-2">
-          <img
-            src={listing.image}
-            alt={listing.name}
-            className="rounded-2xl border border-border/30"
-          />
+          <div className="flex items-center justify-center">
+            <div className="relative w-full max-w-md max-h-[550px] overflow-hidden rounded-2xl border border-border/30 bg-black/20">
+              <img
+                src={listing.image}
+                alt={listing.name}
+                className="h-full w-full object-contain"
+              />
+            </div>
+          </div>
 
           <div>
             <h2 className="text-3xl font-bold mb-2">{listing.name}</h2>
