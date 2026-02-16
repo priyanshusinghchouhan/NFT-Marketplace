@@ -4,18 +4,26 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useListNFT } from "../../hooks/useListNft";
-import { useMarketplaceListings } from "@/hooks/useMarketplaceListings";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  initialContract?: string;
+  initialTokenId?: string;
 }
 
-export function ListNFTModal({ isOpen, onClose }: Props) {
+export function ListNFTModal({ isOpen, onClose, initialContract, initialTokenId }: Props) {
   const [contract, setContract] = useState("");
   const [tokenId, setTokenId] = useState("");
   const [price, setPrice] = useState("");
   const [step, setStep] = useState<"input" | "approving" | "listing">("input");
+
+  // Pre-fill when opening from My NFTs; reset when opening from nav (no initial)
+  useEffect(() => {
+    if (!isOpen) return;
+    setContract(initialContract ?? "");
+    setTokenId(initialTokenId !== undefined ? String(initialTokenId) : "");
+  }, [isOpen, initialContract, initialTokenId]);
 
   const nftContract =
     contract && contract.startsWith("0x") ? (contract as `0x${string}`) : null;
