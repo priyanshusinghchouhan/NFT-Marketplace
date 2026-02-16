@@ -30,11 +30,13 @@ export function useCancelListing() {
   };
   useEffect(() => {
     if(isSuccess && lastCancelledId !== null) {
-      console.log("inside useEffect of cancelled listing");
       setTimeout(() => {
         queryClient.invalidateQueries({
           queryKey: ["listings"]
-        })
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["user-nfts"]
+        });
       }, 1200);
     }
   }, [isSuccess, lastCancelledId, queryClient])
