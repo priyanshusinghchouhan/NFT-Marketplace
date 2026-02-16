@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useAccount } from "wagmi";
 import { Button } from "@/components/ui/button";
 import { useResolvedNFTImage } from "@/hooks/useResolvedNFTImage";
 import type { UserNFT } from "@/types/nft";
 import { formatEther } from "viem";
 import { ListNFTModal } from "./ListNftModal";
+import { NFTDetailModal } from "./NFTDetailModal";
 
 interface OwnedNFTCardProps {
   nft: UserNFT;
@@ -13,6 +15,8 @@ interface OwnedNFTCardProps {
 
 export function OwnedNFTCard({ nft }: OwnedNFTCardProps) {
   const [listModalOpen, setListModalOpen] = useState(false);
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
+  const { address } = useAccount();
 
   const { imageUrl, resolved } = useResolvedNFTImage(nft.tokenURI, {
     listingId: nft.listingId,
@@ -21,6 +25,19 @@ export function OwnedNFTCard({ nft }: OwnedNFTCardProps) {
 
   const shortContract =
     nft.contractAddress.slice(0, 6) + "..." + nft.contractAddress.slice(-4);
+
+  const listing = nft.listed && nft.listingId && nft.price && address
+    ? {
+        id: Number(nft.listingId),
+        name: `NFT #${nft.tokenId}`,
+        collection: "Marketplace Collection",
+        tokenId: nft.tokenId,
+        price: formatEther(BigInt(nft.price)),
+        image: imageUrl || "",
+        seller: address.toLowerCase(),
+        nftContract: nft.contractAddress,
+      }
+    : null;
 
   return (
     <>
@@ -50,11 +67,21 @@ export function OwnedNFTCard({ nft }: OwnedNFTCardProps) {
             <div className="flex flex-col gap-2">
               <p className="font-semibold">NFT #{nft.tokenId}</p>
               {nft.listed ? (
-                <div className="flex items-center justify-between rounded-lg bg-muted/50 px-3 py-2 text-sm">
-                  <span className="text-muted-foreground">Listed</span>
-                  <span className="font-medium text-neon">
-                    {nft.price ? `${formatEther(BigInt(nft.price))} ETH` : "—"}
-                  </span>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between rounded-lg bg-muted/50 px-3 py-2 text-sm">
+                    <span className="text-muted-foreground">Listed</span>
+                    <span className="font-medium text-neon">
+                      {nft.price ? `${formatEther(BigInt(nft.price))} ETH` : "—"}
+                    </span>
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setDetailModalOpen(true)}
+                    className="w-full"
+                  >
+                    Manage listing
+                  </Button>
                 </div>
               ) : (
                 <Button
@@ -76,6 +103,14 @@ export function OwnedNFTCard({ nft }: OwnedNFTCardProps) {
         initialContract={nft.contractAddress}
         initialTokenId={nft.tokenId}
       />
+
+      {listing && (
+        <NFTDetailModal
+          listing={listing}
+          isOpen={detailModalOpen}
+          onClose={() => setDetailModalOpen(false)}
+        />
+      )}
     </>
   );
 }
