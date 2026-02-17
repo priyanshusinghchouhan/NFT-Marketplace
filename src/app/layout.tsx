@@ -1,4 +1,5 @@
 import React from "react"
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata } from 'next'
 import { Space_Grotesk } from 'next/font/google'
 import {Providers} from "../app/providers";
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body className={`font-sans antialiased`}>
         <Providers>
           {children}
+          <Analytics />
         </Providers>
       </body>
     </html>
