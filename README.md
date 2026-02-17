@@ -10,7 +10,7 @@
 [![Wagmi](https://img.shields.io/badge/Wagmi-2-purple?style=for-the-badge)](https://wagmi.sh/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-[🌐 Live Demo](https://nft-marketplace-chi-red.vercel.app/) • [📄 Smart Contract](https://sepolia.etherscan.io/address/0x14098c94258118087820b477bD2B9a38E3cE5371) • [💻 Contract Repo](https://github.com/priyanshusinghchouhan/nft-marketplace-contract)
+[🌐 Live Demo](https://nft-marketplace-chi-red.vercel.app/) • [📄 Smart Contract](https://sepolia.etherscan.io/address/0x14098c94258118087820b477bD2B9a38E3cE5371) • [💻 Contract Repo](https://github.com/priyanshusinghchouhan/nft-marketplace-contract) • [✏️ Backend Repo](https://github.com/priyanshusinghchouhan/nft-marketplace-indexer)
 
 </div>
 
@@ -320,22 +320,25 @@ Test the UI without blockchain interaction:
 
 <div align="center">
 
-<img width="1442" height="798" alt="Homepage" src="https://github.com/user-attachments/assets/dfd7d57a-8488-40a9-86d0-be1eb6809a16" />
+<img width="1442" height="798" alt="Home Page" src="https://github.com/user-attachments/assets/53b9ead4-36c4-4332-a0bd-a107091ff2f0" />
 
-<img width="1442" height="798" alt="My Collections" src="https://github.com/user-attachments/assets/b471d9fa-6b5a-4ef0-aa98-668d469a4363" />
+<img width="1398" height="782" alt="Marketplace" src="https://github.com/user-attachments/assets/db7f8dbb-59ed-4ac0-8a75-c1fd01dd7316" />
 
-<img width="1442" height="798" alt="NFT Details" src="https://github.com/user-attachments/assets/38fd4192-9ab8-42a7-9fa0-a9ddfa6e9fba" />
+<img width="1434" height="669" alt="My Collections" src="https://github.com/user-attachments/assets/47873de8-de72-4ac9-8d56-cb73af1b4b1f" />
 
-<img width="1470" height="786" alt="Recent Activity" src="https://github.com/user-attachments/assets/2ecfb6f3-64bc-4ee3-9039-09f32fb24130" />
+<img width="1375" height="463" alt="My Collections" src="https://github.com/user-attachments/assets/8b1b402d-5f8e-4f02-a627-44a4702cd996" />
+
+<img width="1360" height="742" alt="NFT Detail" src="https://github.com/user-attachments/assets/610c371d-ebc5-45e9-89a4-8105a1e2eb4a" />
+
+<img width="1350" height="709" alt="NFT Detail" src="https://github.com/user-attachments/assets/b65d05c3-7aa7-4ddc-84c4-538ebb164c9e" />
+
+<img width="1417" height="749" alt="Recent Activity" src="https://github.com/user-attachments/assets/6eab6c7f-f591-40e3-96c8-daf7336bb806" />
+
+<img width="1401" height="725" alt="More" src="https://github.com/user-attachments/assets/39e44d63-0693-471b-97ba-90f91a72285a" />
+
+
 
 </div>
-
----
-
-## 🔗 Related Projects
-
-- [Smart Contract Repository](https://github.com/priyanshusinghchouhan/nft-marketplace-contract) - Solidity contracts
-- [Backend Indexer](https://github.com/your-username/nft-marketplace-backend) - Node.js indexer service
 
 ---
 
