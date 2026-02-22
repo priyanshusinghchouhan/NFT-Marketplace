@@ -10,7 +10,7 @@
 [![Wagmi](https://img.shields.io/badge/Wagmi-2-purple?style=for-the-badge)](https://wagmi.sh/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-[🌐 Live Demo](https://nft-marketplace-chi-red.vercel.app/) • [📄 Smart Contract](https://sepolia.etherscan.io/address/0x14098c94258118087820b477bD2B9a38E3cE5371) • [💻 Contract Repo](https://github.com/priyanshusinghchouhan/nft-marketplace-contract) • [✏️ Backend Repo](https://github.com/priyanshusinghchouhan/nft-marketplace-indexer)
+[🌐 Live Demo](https://marketplace.priyanshuchouhan.xyz/) • [📄 Smart Contract](https://sepolia.etherscan.io/address/0x14098c94258118087820b477bD2B9a38E3cE5371) • [💻 Contract Repo](https://github.com/priyanshusinghchouhan/nft-marketplace-contract) • [✏️ Backend Repo](https://github.com/priyanshusinghchouhan/nft-marketplace-indexer)
 
 </div>
 
